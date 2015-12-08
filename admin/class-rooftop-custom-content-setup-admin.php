@@ -106,7 +106,7 @@ class Rooftop_Custom_Content_Setup_Admin {
         /**
          * Add the Content Type item to the Rooftop CMS admin menu
          */
-        add_submenu_page($rooftop_menu_slug, "Content Types", "Content Types", "manage_options", $this->plugin_name."-overview", array($this, 'rooftop_content_type_menu_callback') );
+        add_submenu_page($rooftop_menu_slug, "Content Setup", "Content Setup", "manage_options", $this->plugin_name."-overview", array($this, 'rooftop_content_type_menu_callback') );
     }
 
 	function rooftop_content_type_menu_callback() {
