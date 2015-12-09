@@ -425,12 +425,14 @@ EOSQL;
     }
 
     /**
+     * register our custom templates in the wp cache, overriding the menu that wp uses
      * thanks to http://www.wpexplorer.com/wordpress-page-templates-plugin
      */
 
     public function register_custom_templates( $attrs ) {
+        $page_templates = [];
         foreach( Page_Template::getAll() as $template ) {
-            $this->templates[$template->name] = $template->name;
+            $page_templates[$template->name] = $template->name;
         }
 
         // Create the key used for the themes cache
@@ -446,7 +448,7 @@ EOSQL;
         wp_cache_delete( $cache_key , 'themes');
 
         // Now add our template to the list of templates by merging our templates with the existing templates array from the cache.
-        $templates = array_merge( $templates, $this->templates );
+        $templates = array_merge( $templates, $page_templates );
 
         // Add the modified cache to allow WordPress to pick it up for listing available templates
         wp_cache_add( $cache_key, $templates, 'themes', 1800 );
