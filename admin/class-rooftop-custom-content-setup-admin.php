@@ -433,6 +433,8 @@ EOSQL;
         $page_templates = [];
         foreach( Page_Template::getAll() as $template ) {
             $page_templates[$template->name] = $template->name;
+
+            unset( $template );
         }
 
         // Create the key used for the themes cache
@@ -440,12 +442,13 @@ EOSQL;
 
         // Retrieve the cache list. If it doesn't exist, or it's empty prepare an array
         $templates = wp_get_theme()->get_page_templates();
-        if ( empty( $templates ) ) {
+
+        if( empty( $templates ) ) {
             $templates = array();
         }
 
         // New cache, therefore remove the old one
-        wp_cache_delete( $cache_key , 'themes');
+        wp_cache_delete( $cache_key , 'themes' );
 
         // Now add our template to the list of templates by merging our templates with the existing templates array from the cache.
         $templates = array_merge( $templates, $page_templates );
