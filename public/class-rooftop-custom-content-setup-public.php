@@ -145,7 +145,7 @@ class Rooftop_Custom_Content_Setup_Public {
             'description' => "A $type",
             'public' => true,
             'supports' => array(
-                'title', 'editor', 'excerpt', 'thumbnail'
+                'title', 'editor', 'excerpt', 'thumbnail', 'revisions'
             ),
             'show_ui' => true,
             'menu_position' => 20,
