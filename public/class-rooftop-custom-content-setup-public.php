@@ -119,6 +119,12 @@ class Rooftop_Custom_Content_Setup_Public {
         }
     }
 
+    public function add_page_attributes_to_post() {
+	    $supports = get_all_post_type_supports( 'post' );
+	    array_push( $supports, 'page-attributes', 'custom-fields' );
+	    add_post_type_support( 'post', $supports );
+    }
+
     private function register_content_type($type, $args = null) {
         $inflector = ICanBoogie\Inflector::get('en');
         $sanitised = str_replace(" ","_",strtolower($type));
