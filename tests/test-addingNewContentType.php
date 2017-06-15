@@ -9,7 +9,7 @@
  */
 class Test_Adding_New_ContentType extends PHPUnit_Framework_TestCase {
     function setUp() {
-        $blogs = array_values(array_reverse(wp_get_sites()));
+        $blogs = array_values(array_reverse(get_sites()));
         $blog_id = (int)$blogs[0]['blog_id'];
 
         switch_to_blog($blog_id);
