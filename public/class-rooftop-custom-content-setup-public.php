@@ -121,7 +121,7 @@ class Rooftop_Custom_Content_Setup_Public {
 
     public function add_page_attributes_to_post() {
 	    $supports = get_all_post_type_supports( 'post' );
-	    array_push( $supports, 'page-attributes', 'custom-fields' );
+	    array_push( $supports, 'page-attributes' );
 	    add_post_type_support( 'post', $supports );
     }
 
@@ -151,7 +151,7 @@ class Rooftop_Custom_Content_Setup_Public {
             'description' => "A $type",
             'public' => true,
             'supports' => array(
-                'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes', 'custom-fields'
+                'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'page-attributes'
             ),
             'show_ui' => true,
             'menu_position' => 20,
