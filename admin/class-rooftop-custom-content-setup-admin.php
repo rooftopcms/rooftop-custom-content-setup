@@ -447,15 +447,31 @@ EOSQL;
             $templates = array();
         }
 
-        // New cache, therefore remove the old one
+        // remove the old theme template cache
         wp_cache_delete( $cache_key , 'themes' );
 
         // Now add our template to the list of templates by merging our templates with the existing templates array from the cache.
         $templates = array_merge( $templates, $page_templates );
 
-        // Add the modified cache to allow WordPress to pick it up for listing available templates
+        // store the templates array in the cache - our templates method will fetch it for each post type
         wp_cache_add( $cache_key, $templates, 'themes', 1800 );
 
+        // Wordpress now fetches post-type specific templates through a filter hook.
+        // Add the filter to return our templates in WP admin
+        $post_types = get_post_types( array( 'public' => true, 'show_in_rest' => true ) );
+        foreach( $post_types as $post_type ) {
+            add_filter( "theme_{$post_type}_templates", array( $this, 'templates') , 10, 4);
+        }
+
         return $attrs;
+    }
+
+    /*
+     * Return all registered custom templates, regardless of post type
+     */
+    public function templates($post_templates, $theme, $post, $type) {
+        $cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
+        $templates = wp_cache_get( $cache_key, 'themes' );
+        return $templates;
     }
 }
