@@ -460,7 +460,7 @@ EOSQL;
         // Add the filter to return our templates in WP admin
         $post_types = get_post_types( array( 'public' => true, 'show_in_rest' => true ) );
         foreach( $post_types as $post_type ) {
-            add_filter( "theme_{$post_type}_templates", array( $this, 'templates') , 10, 4);
+            add_filter( "theme_page_templates", array( $this, 'templates') , 10, 4);
         }
 
         return $attrs;
