@@ -14,13 +14,13 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Rooftop Custom Content Setup
- * Plugin URI:        http://rooftop.io
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
- * Version:           1.0.0
+ * Plugin URI:        http://github.com/rooftopcms/rooftop-custom-content-setup
+ * Description:       Custom content types, taxonomies, and page templates in Rooftop.
+ * Version:           1.2.1
  * Author:            Rooftop CMS
- * Author URI:        http://error.agency
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
+ * Author URI:        http://rooftopcms.com
+ * License:           GPL-3.0+
+ * License URI:       http://www.gnu.org/licenses/gpl-3.0.txt
  * Text Domain:       rooftop-custom-content-setup
  * Domain Path:       /languages
  */
