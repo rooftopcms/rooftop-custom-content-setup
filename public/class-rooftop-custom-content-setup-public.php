@@ -155,17 +155,17 @@ class Rooftop_Custom_Content_Setup_Public {
             ),
             'show_ui' => true,
             'menu_position' => 20,
-            'capability_type' => 'page',
+            'capability_type' => 'post',
             'has_archive' => true,
             'show_in_rest' => true,
             'rest_base' => $inflector->pluralize($sanitised),
             'include_taxonomies_in_response' => true
         );
 
-        if(is_null($args) || !is_array($args)){
+        if( is_null( $args ) || !is_array( $args ) ) {
             $args = $default_args;
         }else {
-            $args = array_merge($default_args, $args);
+            $args = array_merge( $default_args, $args );
         }
 
         register_post_type($sanitised, $args);
