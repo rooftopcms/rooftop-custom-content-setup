@@ -23,6 +23,9 @@ Yes, it's a Wordpress plugin you're welcome to use outside the context of Roofto
 
 == Changelog ==
 
+= 1.2.2.1 =
+* Don't register taxonomies on media types
+
 = 1.2.2 =
 * Tweak how we register custom post types
 

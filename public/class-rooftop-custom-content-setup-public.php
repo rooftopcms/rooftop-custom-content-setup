@@ -213,6 +213,7 @@ class Rooftop_Custom_Content_Setup_Public {
             $types = $content_type;
         }elseif($content_type == 'all') {
             $types = get_post_types(array('public' => true));
+            unset( $types['attachment'] );
         }else {
             $types = [$content_type];
         }
