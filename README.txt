@@ -23,7 +23,7 @@ Yes, it's a Wordpress plugin you're welcome to use outside the context of Roofto
 
 == Changelog ==
 
-= 1.2.2.1 =
+= 1.2.2.2 =
 * Don't register taxonomies on media types
 
 = 1.2.2 =
