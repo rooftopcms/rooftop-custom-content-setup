@@ -23,6 +23,12 @@ Yes, it's a Wordpress plugin you're welcome to use outside the context of Roofto
 
 == Changelog ==
 
+= 1.2.2.1 =
+* Dont register taxonomies against media types
+
+= 1.2.2 =
+* Post registration fixes
+
 = 1.2.1 =
 * Hook into the new theme_$type_templates filter to add our page templates to WP Admin
 * Tweak readme for packaging

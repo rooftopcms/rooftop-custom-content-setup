@@ -16,7 +16,7 @@
  * Plugin Name:       Rooftop Custom Content Setup
  * Plugin URI:        http://github.com/rooftopcms/rooftop-custom-content-setup
  * Description:       Custom content types, taxonomies, and page templates in Rooftop.
- * Version:           1.2.1
+ * Version:           1.2.2.1
  * Author:            Rooftop CMS
  * Author URI:        http://rooftopcms.com
  * License:           GPL-3.0+
