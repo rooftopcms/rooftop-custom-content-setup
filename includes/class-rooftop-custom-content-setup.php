@@ -75,7 +75,6 @@ class Rooftop_Custom_Content_Setup {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -160,7 +159,9 @@ class Rooftop_Custom_Content_Setup {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
-        $this->loader->add_action( 'admin_menu', $plugin_admin, 'content_type_menu_links' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'content_type_menu_links' );
+
+		register_activation_hook( plugin_dir_path( dirname(__FILE__) ) . 'rooftop-custom-content-setup.php' , array($plugin_admin, 'add_content_type_tables') );
 
         $this->loader->add_action( 'wpmu_new_blog', $plugin_admin, 'add_content_type_tables', 20 );
         $this->loader->add_action( 'delete_blog', $plugin_admin, 'remove_content_type_tables', 20 );

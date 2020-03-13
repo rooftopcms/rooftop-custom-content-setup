@@ -101,12 +101,10 @@ class Rooftop_Custom_Content_Setup_Admin {
 	}
 
 	public function content_type_menu_links() {
-        $rooftop_menu_slug = "rooftop-overview";
-
         /**
          * Add the Content Type item to the Rooftop CMS admin menu
          */
-        add_submenu_page($rooftop_menu_slug, "Content Setup", "Content Setup", "manage_options", $this->plugin_name."-overview", array($this, 'rooftop_content_type_menu_callback') );
+        add_menu_page("Content Setup", "Content Setup", "manage_options", $this->plugin_name."-overview", array($this, 'rooftop_content_type_menu_callback') );
     }
 
 	function rooftop_content_type_menu_callback() {
@@ -252,7 +250,7 @@ class Rooftop_Custom_Content_Setup_Admin {
         }
 
         if( $content_type->save() ) {
-            echo "<div class='wrap'>Saved</div>";
+            $this->renderMessage("Saved", "created");
             $this->content_types_admin_index();
         }else {
             $this->renderErrors($content_type->errors);
@@ -382,10 +380,12 @@ class Rooftop_Custom_Content_Setup_Admin {
         exit;
     }
 
-    function add_content_type_tables( $blog_id ) {
+    function add_content_type_tables() {
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
         global $wpdb;
 
-        $table_name = $wpdb->prefix . "${blog_id}_custom_content_data";
+        $table_name = $wpdb->prefix . "custom_content_data";
 
         if($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
             $sql = <<<EOSQL
@@ -473,5 +473,11 @@ EOSQL;
         $cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
         $templates = wp_cache_get( $cache_key, 'themes' );
         return $templates;
+    }
+
+    private function renderMessage($message, $messageType) {
+        echo "<div id='message' class='${messageType} notice is-dismissible'>";
+        echo "    <p><strong>${message}</strong></p>";
+        echo "<button type='button' class='notice-dismiss'><span class='screen-reader-text'>Dismiss this notice.</span></button></div>";
     }
 }
