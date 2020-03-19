@@ -154,8 +154,9 @@ class Content_Type {
         global $wpdb;
 
         $table = $wpdb->prefix . "custom_content_data";
-        $rows = $wpdb->get_results($wpdb->prepare("SELECT * FROM ${table} WHERE !(type IN (%s, %s) AND parent_id IS NULL)", 'Taxonomy', 'PageTemplate'));
 
+        $rows = $wpdb->get_results($wpdb->prepare("SELECT * FROM ${table} WHERE !(type IN (%s, %s) AND parent_id IS NULL)", 'Taxonomy', 'PageTemplate'));
+        
         $types = array_filter($rows, function($row) {return $row->parent_id===null;});
         $taxonomies = array_filter($rows, function($row) {return $row->parent_id!==null;});
 

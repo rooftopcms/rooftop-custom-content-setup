@@ -184,10 +184,8 @@ class Rooftop_Custom_Content_Setup {
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
-        if( get_current_blog_id() !== 1) {
-            $this->loader->add_action( 'init', $plugin_public, 'register_custom_content_types', 999 );
-            $this->loader->add_action( 'init', $plugin_public, 'add_page_attributes_to_post', 999 );
-        }
+		$this->loader->add_action( 'init', $plugin_public, 'register_custom_content_types', 999 );
+		$this->loader->add_action( 'init', $plugin_public, 'add_page_attributes_to_post', 999 );
 	}
 
 	/**
