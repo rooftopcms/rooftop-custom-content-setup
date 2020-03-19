@@ -132,7 +132,7 @@ class Rooftop_Custom_Content_Setup_Public {
         $plural = $inflector->pluralize($singular);
         $default_args = array(
             'show_in_graphql' => true,
-            'graphql_single_name' => $singular_name,
+            'graphql_single_name' => $singular,
             'graphql_plural_name' => $plural,
             'hierarchical' => false,
             'labels' => array(
