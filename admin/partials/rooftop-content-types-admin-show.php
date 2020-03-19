@@ -1,12 +1,16 @@
 <div class="wrap">
     <h1>Edit <?php echo $content_type->name; ?></h1>
     <?php
-        // $inflector = ICanBoogie\Inflector::get('en');
-        // $sanitised = str_replace(" ","_",strtolower($content_type->name));
-        // $route = "/wp-json/wp/v2/{$inflector->pluralize($sanitised)}";
+        use ICanBoogie\Inflector;
+
+        $inflector = Inflector::get('en');
+        $sanitised = str_replace(" ","_",strtolower($content_type->name));
+        $route = "/wp-json/wp/v2/{$inflector->pluralize($sanitised)}";
     ?>
 
-    <!-- <p>Available at <a href="<?php echo $route ?>"><?php echo $route ?></a></p> -->
+    <p>
+        Available at <a href="<?php echo $route ?>"><?php echo $route ?></a>
+    </p>
 
     <form action="?page=<?php echo $this->plugin_name;?>-overview" method="POST" id="content-type">
         <?php wp_nonce_field( $this->plugin_name, $this->plugin_name.'-token' ); ?>

@@ -250,7 +250,7 @@ class Rooftop_Custom_Content_Setup_Admin {
         }
 
         if( $content_type->save() ) {
-            $this->renderMessage("Saved", "created");
+            $this->renderMessage("Saved", "success");
             $this->content_types_admin_index();
         }else {
             $this->renderErrors($content_type->errors);
