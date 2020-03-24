@@ -163,11 +163,13 @@ class Rooftop_Custom_Content_Setup {
 
 		register_activation_hook( plugin_dir_path( dirname(__FILE__) ) . 'rooftop-custom-content-setup.php' , array($plugin_admin, 'add_content_type_tables') );
 
-        $this->loader->add_action( 'wpmu_new_blog', $plugin_admin, 'add_content_type_tables', 20 );
-        $this->loader->add_action( 'delete_blog', $plugin_admin, 'remove_content_type_tables', 20 );
+		$this->loader->add_action( 'wpmu_new_blog', $plugin_admin, 'add_content_type_tables', 20 );
+		$this->loader->add_action( 'delete_blog', $plugin_admin, 'remove_content_type_tables', 20 );
 
-        $this->loader->add_filter( 'admin_menu', $plugin_admin, 'register_custom_templates', 10, 1);
-        $this->loader->add_filter( 'wp_insert_post_data', $plugin_admin, 'register_custom_templates', 10, 1 );
+		$this->loader->add_filter( 'admin_menu', $plugin_admin, 'register_custom_templates', 10, 1);
+
+		$this->loader->add_filter( 'wp_loaded', $plugin_admin, 'register_custom_templates', 10, 1 );
+		$this->loader->add_filter( 'rest_api_init', $plugin_admin, 'register_custom_templates', 10, 1 );
 	}
 
 	/**
