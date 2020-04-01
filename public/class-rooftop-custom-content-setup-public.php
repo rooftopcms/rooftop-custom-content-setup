@@ -223,4 +223,20 @@ class Rooftop_Custom_Content_Setup_Public {
 
         register_taxonomy($sanitised, array_values($types), $args);
     }
+
+    public function prepare_content_type_response_hooks() {
+        $types = get_post_types(array('public' => true));
+
+        $cleanup_template = function( $response, $post, $request ) {
+            if( array_key_exists( 'template', $response->data ) ) {
+                $response->data['template'] = sanitize_title_with_dashes( @$response->data['template'] );
+            }
+
+            return $response;
+        };
+
+        foreach($types as $key => $type) {
+            add_action( "rest_prepare_$type", $cleanup_template, 10, 3 );  
+        }
+    }
 }

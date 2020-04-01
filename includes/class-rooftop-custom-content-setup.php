@@ -188,6 +188,10 @@ class Rooftop_Custom_Content_Setup {
 
 		$this->loader->add_action( 'init', $plugin_public, 'register_custom_content_types', 999 );
 		$this->loader->add_action( 'init', $plugin_public, 'add_page_attributes_to_post', 999 );
+
+		if( !is_admin() ) {
+			$this->loader->add_action( 'rest_api_init', $plugin_public, 'prepare_content_type_response_hooks', 999 );
+		}
 	}
 
 	/**
