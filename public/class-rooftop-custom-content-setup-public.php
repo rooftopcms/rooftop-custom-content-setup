@@ -229,8 +229,7 @@ class Rooftop_Custom_Content_Setup_Public {
 
         $cleanup_template = function( $response, $post, $request ) {
             if( array_key_exists( 'template', $response->data ) ) {
-                $template = sanitize_title_with_dashes( @$response->data['template'] );
-                $template = preg_replace('/(^templates\/template-|templatestemplate-|\.php$)/', '', $template);
+	            $template = preg_replace('/(^templates\/template-|\.php$)/', '', @$response->data['template']);
 
                 $response->data['template'] = $template;
             }
