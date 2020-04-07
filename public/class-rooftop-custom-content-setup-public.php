@@ -130,10 +130,14 @@ class Rooftop_Custom_Content_Setup_Public {
         $sanitised = str_replace(" ","_",strtolower($type));
         $singular = $inflector->titleize($type);
         $plural = $inflector->pluralize($singular);
+        
+        $graphQLsingular = preg_replace('/ /', '', $inflector->titleize($type) );
+        $graphQLplural = preg_replace('/ /', '', $inflector->pluralize($singular) );
+
         $default_args = array(
             'show_in_graphql' => true,
-            'graphql_single_name' => $singular,
-            'graphql_plural_name' => $plural,
+            'graphql_single_name' => $graphQLsingular,
+            'graphql_plural_name' => $graphQLplural,
             'hierarchical' => false,
             'labels' => array(
                 'name' => $plural,
