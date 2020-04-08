@@ -128,11 +128,11 @@ class Rooftop_Custom_Content_Setup_Public {
     private function register_content_type($type, $args = null) {
         $inflector = ICanBoogie\Inflector::get('en');
         $sanitised = str_replace(" ","_",strtolower($type));
-        $singular = $inflector->titleize($type);
+        $singular = $inflector->singularize($type);
         $plural = $inflector->pluralize($singular);
         
-        $graphQLsingular = preg_replace('/ /', '', $inflector->titleize($type) );
-        $graphQLplural = preg_replace('/ /', '', $inflector->pluralize($singular) );
+        $graphQLsingular = preg_replace('/ /', '', $singular );
+        $graphQLplural = preg_replace('/ /', '', $plural );
 
         $default_args = array(
             'show_in_graphql' => true,
