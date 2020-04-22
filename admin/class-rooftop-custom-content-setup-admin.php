@@ -475,6 +475,10 @@ EOSQL;
         return $templates;
     }
 
+    public function build_post_path( $post_id ) {
+	    return str_replace(home_url(), '', get_permalink( $post_id ));
+    }
+
     private function renderMessage($message, $messageType) {
         echo "<div id='message' class='${messageType} notice is-dismissible'>";
         echo "    <p><strong>${message}</strong></p>";

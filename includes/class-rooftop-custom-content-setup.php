@@ -170,6 +170,8 @@ class Rooftop_Custom_Content_Setup {
 
 		$this->loader->add_filter( 'wp_loaded', $plugin_admin, 'register_custom_templates', 10, 1 );
 		$this->loader->add_filter( 'rest_api_init', $plugin_admin, 'register_custom_templates', 10, 1 );
+
+		$this->loader->add_action( 'rooftop/build_post_path', $plugin_admin, 'build_post_path', 1 );
 	}
 
 	/**
