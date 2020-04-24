@@ -233,7 +233,8 @@ class Rooftop_Custom_Content_Setup_Public {
 
         $cleanup_template = function( $response, $post, $request ) {
             if( array_key_exists( 'template', $response->data ) ) {
-	            $template = preg_replace('/(^templates\/template-|\.php$)/', '', @$response->data['template']);
+                $template = preg_replace('/(^templates\/template-|\.php$)/', '', @$response->data['template']);
+                $template = sanitize_title_with_dashes( $template );
 
                 $response->data['template'] = $template;
             }
@@ -244,5 +245,19 @@ class Rooftop_Custom_Content_Setup_Public {
         foreach($types as $key => $type) {
             add_action( "rest_prepare_$type", $cleanup_template, 10, 3 );  
         }
+    }
+
+    public function add_page_template_field() {
+        register_graphql_field('Page', 'pageTemplate', [
+            'type' => 'String',
+            'description' => 'WordPress Page Template',
+            'resolve' => function ($page) {
+                $template = get_page_template_slug($page->pageId);
+                $template = preg_replace('/(^templates\/template-|\.php$)/', '', $template);
+                $template = sanitize_title_with_dashes( $template );
+
+                return $template ;
+            },
+        ]);
     }
 }

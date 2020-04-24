@@ -170,7 +170,7 @@ class Rooftop_Custom_Content_Setup {
 
 		$this->loader->add_filter( 'wp_loaded', $plugin_admin, 'register_custom_templates', 10, 1 );
 		$this->loader->add_filter( 'rest_api_init', $plugin_admin, 'register_custom_templates', 10, 1 );
-
+		
 		$this->loader->add_action( 'rooftop/build_post_path', $plugin_admin, 'build_post_path', 1 );
 	}
 
@@ -194,6 +194,8 @@ class Rooftop_Custom_Content_Setup {
 		if( !is_admin() ) {
 			$this->loader->add_action( 'rest_api_init', $plugin_public, 'prepare_content_type_response_hooks', 999 );
 		}
+
+		$this->loader->add_action('graphql_register_types', $plugin_public, 'add_page_template_field', 10 );
 	}
 
 	/**
