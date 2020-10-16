@@ -133,11 +133,14 @@ class Rooftop_Custom_Content_Setup_Public {
         
         $graphQLsingular = preg_replace('/ /', '', $singular );
         $graphQLplural = preg_replace('/ /', '', $plural );
-
+        
         $default_args = array(
             'show_in_graphql' => true,
+            'graphql_name' => $graphQLsingular,
             'graphql_single_name' => $graphQLsingular,
             'graphql_plural_name' => $graphQLplural,
+            'graphql_singular_type' => $singular,
+            'graphql_plural_type' => $plural,
             'hierarchical' => false,
             'labels' => array(
                 'name' => $plural,
@@ -168,7 +171,7 @@ class Rooftop_Custom_Content_Setup_Public {
             'rest_base' => $inflector->pluralize($sanitised),
             'include_taxonomies_in_response' => true
         );
-
+        
         if( is_null( $args ) || !is_array( $args ) ) {
             $args = $default_args;
         }else {
