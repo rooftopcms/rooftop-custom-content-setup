@@ -476,7 +476,14 @@ EOSQL;
     }
 
     public function build_post_path( $post_id ) {
-	    return str_replace(home_url(), '', get_permalink( $post_id ));
+        $post = get_post( $post_id );
+        $is_published = $post->post_status == "publish";
+
+        if( $is_published ) {
+            return str_replace(home_url(), '', get_permalink( $post_id ));
+        }else {
+            return "/" . $post->post_type . "/" . "unpublished-preview";
+        }
     }
 
     private function renderMessage($message, $messageType) {
