@@ -482,6 +482,8 @@ EOSQL;
         if( $is_published ) {
             return str_replace(home_url(), '', get_permalink( $post_id ));
         }else {
+            // if posts aren't published, we need to redirect to a url which 
+            // we can support on the client if we're previeing the post....
             return "/" . $post->post_type . "/" . "unpublished-preview";
         }
     }
